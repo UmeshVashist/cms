@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cash Management</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <ul>
+      <li onclick="showSection('dashboardSection')">Dashboard</li>
+      <li onclick="showSection('transactionSection')">Add Transaction</li>
+      <!-- <li onclick="showSection('historySection')">History</li> -->
+      <li onclick="showSection('reportSection')">Report</li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <!-- Dashboard Section -->
+    <section id="dashboardSection" class="content-section">
+      <h2>Dashboard</h2>
+      <div class="balance-row">
+        <p>Total Balance: Rs.<span id="balance">0</span></p>
+        <p>Last Month Ending Balance: Rs.<span id="lastMonthBalance">0</span></p>
+      </div>
+      <div class="blance-row">
+        <p>Total Credit (This Month): Rs.<span id="totalCredit">0</span></p>
+        <p>Total Debit (This Month): Rs.<span id="totalDebit">0</span></p>
+      </div>
+      <table id="transactions">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>View</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+    </section>
+
+
+    <!-- Report Section -->
+    <section id="reportSection" class="content-section" style="display: none;">
+      <h2>Download Report</h2>
+      <label class="report" for="fromDate">From:</label>
+      <input class="report" type="date" id="fromDate" />
+      <label class="report" for="toDate">To:</label>
+      <input class="report" type="date" id="toDate" />
+      <button  class="add" onclick="downloadReport()">Download</button>
+    </section>
+
+    <!-- Add Transaction Section -->
+    <section id="transactionSection" class="content-section" style="display: none;">
+      <h2>Add Transaction</h2>
+      <form id="transactionForm">
+        <input type="text" id="description" placeholder="Description" required />
+        <input type="number" id="amount" placeholder="Amount" required />
+        <select class="typ" id="type">
+          <option value="credit">Credit</option>
+          <option value="debit">Debit</option>
+        </select>
+        <button class="add" type="submit">Add</button>
+      </form>
+    </section>
+  </div>
+
+  <!-- Modal -->
+  <div id="transactionModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Transaction Details</h2>
+      <p><strong>Date:</strong> <span id="modalDate"></span></p>
+      <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+      <p><strong>Type:</strong> <span id="modalType"></span></p>
+      <p><strong>Amount:</strong> $<span id="modalAmount"></span></p>
+    </div>
+  </div>
+
+  <script src="scrpit.js"></script>
+</body>
+
+</html>
